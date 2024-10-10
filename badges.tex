@@ -40,8 +40,8 @@
 % There are 8 badges per page, so we can compute the margins.
 \pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 3 * \BadgeHeight - 3 * \BadgeSepY) / 3}
 \pgfmathsetlengthmacro{\BadgeMarginLeft}{(\paperwidth - 3 * \BadgeWidth - \BadgeSepX) / 3}
-\pgfmathsetlengthmacro{\LogoHeight}{\BadgeHeight * 0.15}
-\pgfmathsetlengthmacro{\LogoWidth}{\BadgeWidth * 0.8}
+\pgfmathsetlengthmacro{\LogoHeight}{\BadgeHeight * 0.2}
+\pgfmathsetlengthmacro{\LogoWidth}{\BadgeWidth * 0.9}
 
 % No overprinting in draft mode.
 \ifDraftMode
@@ -51,10 +51,10 @@
 % If the number or names of the optional events change, you need to
 % adapt the following command.
 \newcommand{\attendance}[5]{
-  \pgfmathsetlengthmacro{\xshift}{1 * \BadgeWidth / 3}
+  \pgfmathsetlengthmacro{\xshift}{1 * \BadgeWidth / 2}
   \begin{scope}[xshift=0*\xshift]
-    \draw [fill=#2!20,draw=none] (#4, -\Fudge) rectangle (\BadgeWidth / 1 + #5, 0.5);
-    \node [anchor=base] at (2\BadgeWidth / 8,0.12) {\textbf{\large{#3}}};
+    \draw [fill=#2!20,draw=none] (#4, -\Fudge) rectangle (\BadgeWidth / 1 + #5, 1);
+    \node [anchor=base] at (2\BadgeWidth / 10,0.35) {\textbf{\large{#3}}};
   \end{scope}
 }
 %\newcommand{\attendsEventA}{\attendance{0}{eventA}{Tue}{-\Fudge}{0}}
@@ -112,7 +112,7 @@
         {\textbf{\fontsize{22}{22}\selectfont{\firstname~\lastname}}};
   
 
-    \node [anchor=base] at (\BadgeWidth / 2, 1.8) {\Large{\affiliation}};
+    %\node [anchor=base] at (\BadgeWidth / 2, 1.8) {\Large{\affiliation}};
 
     %% The bottom line
     \ifthenelse{\equal{\eventA}{}}{}{\attendsEventA}
@@ -120,7 +120,7 @@
     \ifthenelse{\equal{\eventC}{}}{}{\attendsEventC}
     \ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
     % Draw a fine gray line above the event markers.
-    \draw [draw=black!30] (-\Fudge, 0.5) -- (\BadgeWidth + \Fudge, 0.5);
+    \draw [draw=black!30] (-\Fudge, 1) -- (\BadgeWidth + \Fudge, 1);
 
     %% A frame
     % Draw a frame around the badge if in draft mode.
@@ -213,8 +213,8 @@
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
   \csvreader{participants.csv}{%
-    1=\affiliation,3=\firstname,4=\lastname,
-    5=\eventA,6=\eventB,7=\eventC,8=\eventD}%
+    1=\firstname,2=\lastname,
+    3=\eventA,4=\eventB,5=\eventC,6=\eventD}%
   {
     \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
