@@ -1,8 +1,8 @@
 Affiliation,Title,First Name,Last Name,HS,GA,SP,VO
-University of Somewhere,,First,Last,1,1,1,1
-University of Somewhere,,John,Doe,1,,1,1
+University of Somewhere,,First,Last,1,,,
+University of Somewhere,,John,Doe,,,1,
 University of Somewhere,,Jane,Doe,1,,,
-University of Somewhere,,Jeremy,Two,1,1,,1
-University of Somewhere,,Jeremy,Two,1,1,,1
-University of Somewhere,,Jeremy,Two,1,1,,1
-University of Somewhere,,Jeremy,Two,1,1,,1
+University of Somewhere,,Jeremy,Two,,1,,
+University of Somewhere,,Jeremy,Two,,1,,
+University of Somewhere,,Jeremy,Two,1,,,
+University of Somewhere,,Jeremy,Two,1,,,
