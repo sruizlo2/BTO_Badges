@@ -52,9 +52,9 @@
 % adapt the following command.
 \newcommand{\attendance}[5]{
   \pgfmathsetlengthmacro{\xshift}{1 * \BadgeWidth / 3}
-  \begin{scope}[xshift=\xshift]
-    \draw [fill=#2!20,draw=none] (#4, -\Fudge) rectangle (\BadgeWidth / 3 + #5, 0.5);
-    \node [anchor=base] at (\BadgeWidth / 8,0.12) {\textbf{\large{#3}}};
+  \begin{scope}[xshift=0*\xshift]
+    \draw [fill=#2!20,draw=none] (#4, -\Fudge) rectangle (\BadgeWidth / 1 + #5, 0.5);
+    \node [anchor=base] at (2\BadgeWidth / 8,0.12) {\textbf{\large{#3}}};
   \end{scope}
 }
 %\newcommand{\attendsEventA}{\attendance{0}{eventA}{Tue}{-\Fudge}{0}}
@@ -63,9 +63,9 @@
 %\newcommand{\attendsEventD}{\attendance{3}{eventD}{Speaker}{0}{\Fudge}}
 
 \newcommand{\attendsEventA}{\attendance{0}{eventA}{High-school}{-\Fudge}{0}}
-\newcommand{\attendsEventB}{\attendance{1}{eventB}{Wed}{0}{0}}
-\newcommand{\attendsEventC}{\attendance{2}{eventC}{Thu}{0}{0}}
-\newcommand{\attendsEventD}{\attendance{3}{eventD}{Speaker}{0}{\Fudge}}
+\newcommand{\attendsEventB}{\attendance{1}{eventB}{General Attendee}{0}{0}}
+\newcommand{\attendsEventC}{\attendance{2}{eventC}{Speaker}{0}{0}}
+\newcommand{\attendsEventD}{\attendance{3}{eventD}{Volunteer}{0}{\Fudge}}
 
 \newcommand{\TryNameSize}[2]{
   \begin{scope}
