@@ -17,13 +17,13 @@
 
 % You may change the following two values (within reason).  Everything
 % else will be recomputed automatically.
-\newcommand{\BadgeWidth}{8.6cm}
-\newcommand{\BadgeHeight}{5.5cm}
+\newcommand{\BadgeWidth}{6.0cm}
+\newcommand{\BadgeHeight}{9.0cm}
 
 
 % Distance between badges.  You probably do not need to change this.
-\newcommand{\BadgeSepX}{0.6cm}
-\newcommand{\BadgeSepY}{0.9cm}
+\newcommand{\BadgeSepX}{0.5cm}
+\newcommand{\BadgeSepY}{0.6cm}
 
 % The amount of overprinting (irrelevant for draft mode)
 \newcommand{\Fudge}{1.5mm}
@@ -38,9 +38,10 @@
 \colorlet{eventD}{purple}
 
 % There are 8 badges per page, so we can compute the margins.
-\pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 4 * \BadgeHeight - 3 * \BadgeSepY) / 2}
+\pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 3 * \BadgeHeight - 3 * \BadgeSepY) / 2}
 \pgfmathsetlengthmacro{\BadgeMarginLeft}{(\paperwidth - 2 * \BadgeWidth - \BadgeSepX) / 2}
-\pgfmathsetlengthmacro{\LogoHeight}{\BadgeHeight * 0.25}
+\pgfmathsetlengthmacro{\LogoHeight}{\BadgeHeight * 0.15}
+\pgfmathsetlengthmacro{\LogoWidth}{\BadgeWidth * 0.8}
 
 % No overprinting in draft mode.
 \ifDraftMode
@@ -50,13 +51,18 @@
 % If the number or names of the optional events change, you need to
 % adapt the following command.
 \newcommand{\attendance}[5]{
-  \pgfmathsetlengthmacro{\xshift}{#1 * \BadgeWidth / 4}
+  \pgfmathsetlengthmacro{\xshift}{1 * \BadgeWidth / 3}
   \begin{scope}[xshift=\xshift]
-    \draw [fill=#2!20,draw=none] (#4, -\Fudge) rectangle (\BadgeWidth / 4 + #5, 0.5);
+    \draw [fill=#2!20,draw=none] (#4, -\Fudge) rectangle (\BadgeWidth / 3 + #5, 0.5);
     \node [anchor=base] at (\BadgeWidth / 8,0.12) {\textbf{\large{#3}}};
   \end{scope}
 }
-\newcommand{\attendsEventA}{\attendance{0}{eventA}{Tue}{-\Fudge}{0}}
+%\newcommand{\attendsEventA}{\attendance{0}{eventA}{Tue}{-\Fudge}{0}}
+%\newcommand{\attendsEventB}{\attendance{1}{eventB}{Wed}{0}{0}}
+%\newcommand{\attendsEventC}{\attendance{2}{eventC}{Thu}{0}{0}}
+%\newcommand{\attendsEventD}{\attendance{3}{eventD}{Speaker}{0}{\Fudge}}
+
+\newcommand{\attendsEventA}{\attendance{0}{eventA}{High-school}{-\Fudge}{0}}
 \newcommand{\attendsEventB}{\attendance{1}{eventB}{Wed}{0}{0}}
 \newcommand{\attendsEventC}{\attendance{2}{eventC}{Thu}{0}{0}}
 \newcommand{\attendsEventD}{\attendance{3}{eventD}{Speaker}{0}{\Fudge}}
@@ -94,9 +100,9 @@
     %\draw [fill=black!5,draw=none]
      % (-\Fudge, \BadgeHeight - 0.9cm) rectangle (\BadgeWidth + \Fudge, \BadgeHeight + \Fudge);
 
-    \node at (\BadgeWidth / 4, \BadgeHeight - \LogoHeight){\includegraphics[height=\LogoHeight]{logo_large.png}};
+    \node at (\BadgeWidth / 2, \BadgeHeight - \LogoHeight){\includegraphics[width=\LogoWidth]{BTOLogo.png}};
     \node at (1, \BadgeHeight - \LogoHeight) {};
-    \node at (\BadgeWidth - \BadgeWidth / 4, \BadgeHeight - \LogoHeight) {\includegraphics[height=\LogoHeight]{uom}};
+    %\node at (\BadgeWidth - \BadgeWidth / 3, \BadgeHeight - \LogoHeight) {\includegraphics[height=\LogoHeight]{uom}};
 
     %% The middle part
     % Try different font sizes for the name to find the maximum
@@ -112,7 +118,7 @@
     \ifthenelse{\equal{\eventA}{}}{}{\attendsEventA}
     \ifthenelse{\equal{\eventB}{}}{}{\attendsEventB}
     \ifthenelse{\equal{\eventC}{}}{}{\attendsEventC}
-    \ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
+    %\ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
     % Draw a fine gray line above the event markers.
     \draw [draw=black!30] (-\Fudge, 0.5) -- (\BadgeWidth + \Fudge, 0.5);
 
@@ -198,7 +204,7 @@
   \end{tikzpicture}
 }
 
-\newcommand{\BadgesPerPage}{8}
+\newcommand{\BadgesPerPage}{9}
 
 \pagestyle{empty}
 \begin{document}
@@ -210,7 +216,7 @@
     1=\affiliation,4=\firstname,5=\lastname,
     6=\eventA,7=\eventB,8=\eventC,9=\eventD}%
   {
-    \pgfmathtruncatemacro{\j}{mod(\i, 8)}
+    \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
     \ifnum\j=0\ifnum\i=0\else
       \newpage
