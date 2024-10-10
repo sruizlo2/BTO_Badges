@@ -38,8 +38,8 @@
 \colorlet{eventD}{purple}
 
 % There are 8 badges per page, so we can compute the margins.
-\pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 3 * \BadgeHeight - 3 * \BadgeSepY) / 2}
-\pgfmathsetlengthmacro{\BadgeMarginLeft}{(\paperwidth - 2 * \BadgeWidth - \BadgeSepX) / 2}
+\pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 3 * \BadgeHeight - 3 * \BadgeSepY) / 3}
+\pgfmathsetlengthmacro{\BadgeMarginLeft}{(\paperwidth - 3 * \BadgeWidth - \BadgeSepX) / 3}
 \pgfmathsetlengthmacro{\LogoHeight}{\BadgeHeight * 0.15}
 \pgfmathsetlengthmacro{\LogoWidth}{\BadgeWidth * 0.8}
 
@@ -69,7 +69,7 @@
 
 \newcommand{\TryNameSize}[2]{
   \begin{scope}
-    \node [anchor=mid] (try#1) at (\BadgeWidth / 2, 3.2)
+    \node [anchor=mid] (try#1) at (\BadgeWidth / 3, 3.2)
       {\textbf{\fontsize{#1}{#1}\selectfont{\phantom{\firstname~\lastname}}}};
     \newdimen\x
     \pgfextractx{\x}{\pgfpointanchor{try#1}{east}}
@@ -77,7 +77,7 @@
     \ifnum \TooLarge=1
       #2
     \else
-      \node [anchor=mid] at (\BadgeWidth / 2, 3.2)
+      \node [anchor=mid] at (\BadgeWidth / 3, 3.2)
         {\textbf{\fontsize{#1}{#1}\selectfont\firstname~\lastname}};
     \fi
   \end{scope}
@@ -85,9 +85,9 @@
 
 \newcommand*{\SingleBadge}[1]{
   \pgfmathsetlengthmacro{\xshift}{
-    mod(#1, 2) * (\BadgeWidth + \BadgeSepX) + \BadgeWidth / 2 + \BadgeMarginLeft}
+    mod(#1, 3) * (\BadgeWidth + \BadgeSepX) + \BadgeWidth / 2 + \BadgeMarginLeft}
   \pgfmathsetlengthmacro{\yshift}{
-    int(#1 / 2) * (\BadgeHeight + \BadgeSepY) + \BadgeHeight / 2 + \BadgeMarginTop}
+    int(#1 / 3) * (\BadgeHeight + \BadgeSepY) + \BadgeHeight / 2 + \BadgeMarginTop}
   \node [xshift=\xshift,yshift=-\yshift]
     at (current page.north west) {
   \begin{tikzpicture}
@@ -118,7 +118,7 @@
     \ifthenelse{\equal{\eventA}{}}{}{\attendsEventA}
     \ifthenelse{\equal{\eventB}{}}{}{\attendsEventB}
     \ifthenelse{\equal{\eventC}{}}{}{\attendsEventC}
-    %\ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
+    \ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
     % Draw a fine gray line above the event markers.
     \draw [draw=black!30] (-\Fudge, 0.5) -- (\BadgeWidth + \Fudge, 0.5);
 
@@ -213,8 +213,8 @@
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
   \csvreader{participants.csv}{%
-    1=\affiliation,4=\firstname,5=\lastname,
-    6=\eventA,7=\eventB,8=\eventC,9=\eventD}%
+    1=\affiliation,3=\firstname,4=\lastname,
+    5=\eventA,6=\eventB,7=\eventC,8=\eventD}%
   {
     \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
@@ -223,7 +223,7 @@
     \fi\fi
 
     \ifMirroredPage
-      \pgfmathtruncatemacro{\j}{\j - mod(\i, 2) + mod(\i + 1, 2)}
+      \pgfmathtruncatemacro{\j}{\j - mod(\i, 3) + mod(\i + 1, 3)}
     \fi
 
     \begin{tikzpicture}[remember picture,overlay]
