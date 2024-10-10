@@ -1,8 +1,8 @@
-Affiliation,Form of Address,Title,First Name,Last Name,tue,wed,thu,speaker
-University of Somewhere,Mr.,,First,Last,1,1,1,1
-University of Somewhere,Mrs.,,John,Doe,1,,1,1
-University of Somewhere,Mrs.,,Jane,Doe,1,,,
-University of Somewhere,Mr.,,Jeremy,Two,1,1,,1
-University of Somewhere,Mr.,,Jeremy,Two,1,1,,1
-University of Somewhere,Mr.,,Jeremy,Two,1,1,,1
-University of Somewhere,Mr.,,Jeremy,Two,1,1,,1
+Affiliation,Title,First Name,Last Name,HS,GA,SP,VO
+University of Somewhere,,First,Last,1,1,1,1
+University of Somewhere,,John,Doe,1,,1,1
+University of Somewhere,,Jane,Doe,1,,,
+University of Somewhere,,Jeremy,Two,1,1,,1
+University of Somewhere,,Jeremy,Two,1,1,,1
+University of Somewhere,,Jeremy,Two,1,1,,1
+University of Somewhere,,Jeremy,Two,1,1,,1
