@@ -6,6 +6,9 @@
 \newif\ifDraftMode\DraftModefalse
 \newif\ifMirroredPage\MirroredPagefalse
 \usepackage{tgheros}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+
 \input{IndividualBadge.tex}
 % Comment out the following line for the final print.  Disabling draft
 % mode enables overprinting to avoid white margins after cropping the
@@ -221,7 +224,7 @@
   \def\i{0}
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
-  \csvreader{blank.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}%
+  \csvreader{HighSchoolRegistration.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}%
   {
     \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
