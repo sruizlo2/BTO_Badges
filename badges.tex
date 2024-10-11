@@ -221,7 +221,7 @@
   \def\i{0}
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
-  \csvreader{participants.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}%
+  \csvreader{blank.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}%
   {
     \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
