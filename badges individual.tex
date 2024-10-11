@@ -6,7 +6,6 @@
 \newif\ifDraftMode\DraftModefalse
 \newif\ifMirroredPage\MirroredPagefalse
 \usepackage{tgheros}
-\input{IndividualBadge.tex}
 % Comment out the following line for the final print.  Disabling draft
 % mode enables overprinting to avoid white margins after cropping the
 % badges and it also hides the black frame around each badge.
@@ -18,8 +17,8 @@
 
 % You may change the following two values (within reason).  Everything
 % else will be recomputed automatically.
-\newcommand{\BadgeWidth}{5.25cm}
-\newcommand{\BadgeHeight}{8.25cm}
+\newcommand{\BadgeWidth}{5.5cm}
+\newcommand{\BadgeHeight}{8.5cm}
 
 
 % Distance between badges.  You probably do not need to change this.
@@ -33,10 +32,10 @@
 \newcommand{\CropMarksSep}{0.5mm}
 
 % The colors for the events markers
-\colorlet{HighSchool}{blue}
-\colorlet{GeneralAttendee}{green!60!black}
-\definecolor{Volunteer}{RGB}{255,100,0}
-\colorlet{Speaker}{purple}
+\colorlet{eventA}{blue}
+\colorlet{eventB}{green!60!black}
+\definecolor{eventD}{RGB}{255,100,0}
+\colorlet{eventC}{purple}
 
 % There are 8 badges per page, so we can compute the margins.
 \pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 3 * \BadgeHeight - 1.5 * \BadgeSepY) / 3}
@@ -58,15 +57,15 @@
     \node [anchor=base] at (2\BadgeWidth / 10,0.35) {\textbf{\large{#3}}};
   \end{scope}
 }
-%\newcommand{\attendsHighSchool}{\attendance{0}{HighSchool}{Tue}{-\Fudge}{0}}
-%\newcommand{\attendsGeneralAttendee}{\attendance{1}{GeneralAttendee}{Wed}{0}{0}}
-%\newcommand{\attendsSpeaker}{\attendance{2}{Speaker}{Thu}{0}{0}}
-%\newcommand{\attendsVolunteer}{\attendance{3}{Volunteer}{Speaker}{0}{\Fudge}}
+%\newcommand{\attendsEventA}{\attendance{0}{eventA}{Tue}{-\Fudge}{0}}
+%\newcommand{\attendsEventB}{\attendance{1}{eventB}{Wed}{0}{0}}
+%\newcommand{\attendsEventC}{\attendance{2}{eventC}{Thu}{0}{0}}
+%\newcommand{\attendsEventD}{\attendance{3}{eventD}{Speaker}{0}{\Fudge}}
 
-\newcommand{\attendsHighSchool}{\attendance{0}{HighSchool}{High-school}{-\Fudge}{0}}
-\newcommand{\attendsGeneralAttendee}{\attendance{1}{GeneralAttendee}{General Attendee}{0}{0}}
-\newcommand{\attendsSpeaker}{\attendance{2}{Speaker}{Speaker}{0}{0}}
-\newcommand{\attendsVolunteer}{\attendance{3}{Volunteer}{Volunteer}{0}{\Fudge}}
+\newcommand{\attendsEventA}{\attendance{0}{eventA}{High-school}{-\Fudge}{0}}
+\newcommand{\attendsEventB}{\attendance{1}{eventB}{General Attendee}{0}{0}}
+\newcommand{\attendsEventC}{\attendance{2}{eventC}{Speaker}{0}{0}}
+\newcommand{\attendsEventD}{\attendance{3}{eventD}{Volunteer}{0}{\Fudge}}
 
 \newcommand{\TryNameSize}[2]{
   \begin{scope}
@@ -117,10 +116,10 @@
     %\node [anchor=base] at (\BadgeWidth / 2, 1.8) {\Large{\affiliation}};
 
     %% The bottom line
-    \ifthenelse{\equal{\HighSchool}{}}{}{\attendsHighSchool}
-    \ifthenelse{\equal{\GeneralAttendee}{}}{}{\attendsGeneralAttendee}
-    \ifthenelse{\equal{\Speaker}{}}{}{\attendsSpeaker}
-    \ifthenelse{\equal{\Volunteer}{}}{}{\attendsVolunteer}
+    \ifthenelse{\equal{\eventA}{}}{}{\attendsEventA}
+    \ifthenelse{\equal{\eventB}{}}{}{\attendsEventB}
+    \ifthenelse{\equal{\eventC}{}}{}{\attendsEventC}
+    \ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
     % Draw a fine gray line above the event markers.
     \draw [draw=black!30] (-\Fudge, 1) -- (\BadgeWidth + \Fudge, 1);
 
@@ -221,7 +220,9 @@
   \def\i{0}
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
-  \csvreader{participants.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}%
+  \csvreader{participants.csv}{%
+    1=\firstname,2=\lastname,
+    3=\eventA,4=\eventB,5=\eventC,6=\eventD}%
   {
     \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
