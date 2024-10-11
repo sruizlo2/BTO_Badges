@@ -1,5 +1,5 @@
 \documentclass{scrartcl}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{anyfontsize,csvsimple,ifthen,tikz,xcolor}
 \usetikzlibrary{calc}
@@ -40,6 +40,7 @@
 \colorlet{GeneralAttendee}{green!60!black}
 \definecolor{Volunteer}{RGB}{255,100,0}
 \colorlet{Speaker}{purple}
+\colorlet{Parent}{blue}
 
 % There are 8 badges per page, so we can compute the margins.
 \pgfmathsetlengthmacro{\BadgeMarginTop}{(\paperheight - 3 * \BadgeHeight - 1.5 * \BadgeSepY) / 3}
@@ -70,6 +71,7 @@
 \newcommand{\attendsGeneralAttendee}{\attendance{1}{GeneralAttendee}{General Attendee}{0}{0}}
 \newcommand{\attendsSpeaker}{\attendance{2}{Speaker}{Speaker}{0}{0}}
 \newcommand{\attendsVolunteer}{\attendance{3}{Volunteer}{Volunteer}{0}{\Fudge}}
+\newcommand{\attendsGuardian}{\attendance{4}{Parent/Chaperon}{Parent/Chaperon}{0}{\Fudge}}
 
 \newcommand{\TryNameSize}[2]{
   \begin{scope}
@@ -224,7 +226,7 @@
   \def\i{0}
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
-  \csvreader{HighSchoolRegistration.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}%
+  \csvreader{BlankHigSchool.csv}{1=\firstname,2=\lastname,3=\HighSchool,4=\GeneralAttendee,5=\Speaker,6=\Volunteer}% HighSchoolRegistration
   {
     \pgfmathtruncatemacro{\j}{mod(\i, 9)}
 
